@@ -3,7 +3,7 @@ This is a repository of useful R functions, scripts, or SAS programs that group 
 <ul>
   <li>Language (R or SAS)</li>
   <ul>
-    <li>Project Stage (e.g. data reading, data cleaning, data visualization)</li>
+    <li>Project Stage (e.g. data_read, data_clean, data_viz)</li>
   </ul>
 </ul>
 
