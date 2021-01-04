@@ -24,6 +24,8 @@ p_load("readr", "tidyverse")
 read_da_dct <- function(data_path, dict_path, HHIDPN = TRUE){
   
   # Read the dictionary file
+  # Notes: HRS core only needs you to skip = 1 line, but ADAMS requires skip = 2 lines
+  #   if you get the error "HHID doesn't exist" it's because you've skipped too many lines
   df_dict <- read.table(dict_path, skip = 2, fill = TRUE,
                         stringsAsFactors = FALSE)
   
