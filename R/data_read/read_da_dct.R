@@ -9,6 +9,8 @@
 #Inputs: 
 # data_path: path to the .da file
 # dict_path: path to the .dct file
+# skip_lines: number of lines to skip at the beginning of the dict file;
+#   want to start at first var name "HHID"; defaults to 2
 # HHIDPN: defaults to TRUE; merges the HHID and PN variables
 
 #Ouput: formatted dataframe 
@@ -21,12 +23,14 @@ if (!require("pacman")){
 p_load("readr", "tidyverse")
 
 #---- Function ----
-read_da_dct <- function(data_path, dict_path, HHIDPN = TRUE){
+read_da_dct <- function(data_path, dict_path, skip_lines = 2, HHIDPN = TRUE){
   
   # Read the dictionary file
-  # Notes: HRS core only needs you to skip = 1 line, but ADAMS requires skip = 2 lines
-  #   if you get the error "HHID doesn't exist" it's because you've skipped too many lines
-  df_dict <- read.table(dict_path, skip = 2, fill = TRUE,
+  # Notes: HRS 1998, 2000 core only needs you to skip = 1 line, 
+  #   but the rest of HRS requires skip = 2 lines
+  #   if you get the error "HHID doesn't exist" it's because you've 
+  #   skipped too many lines
+  df_dict <- read.table(dict_path, skip = skip_lines, fill = TRUE,
                         stringsAsFactors = FALSE)
   
   #Set column names for dictionary dataframe
